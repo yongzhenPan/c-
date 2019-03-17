@@ -1,0 +1,23 @@
+将一个类的成员函数作为另一个类的友元函数，严格走三部曲。
+碰到一个头疼的问题。
+
+class B
+{
+    void B1(const A&);
+    vector<A> vecA;
+}
+
+class A
+{
+public:
+    friend void B::B1(const A&);
+private:
+    int a1=1;
+}
+
+void B::B1(const A& arg_A)
+{
+    arg_A.a1;
+}
+
+友元的那一块按照三个步骤来是一点问题都没有的，但是我们在B中有一个vector<A>类型成员，因为B定义在A之前，而编译器会认为A还没有定义，无法为我们创建我们想要的vecA。如果把A的定义放到B之前，A类中友元声明部分会认为B还没有声明，不认识B了，友元部分也就无法通过编译，所以局面很尴尬。
