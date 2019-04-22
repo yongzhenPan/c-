@@ -7,3 +7,5 @@
 愚蠢地使用了const ostream&，输入输出流不能const
 
 strlen(const char *)来判断c风格字符串长度
+
+初始化时候的=（使用构造函数）和赋值时候=（使用赋值运算符）不一样
