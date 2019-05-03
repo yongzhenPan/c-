@@ -1,2 +1,8 @@
 类里面声明类型成员，就用typedef typename XXX XXX; 这样的话，才会让编译器认为这是一个类型，而不是简单的别名。
 而且每一次要用到这个类型的时候都前置typename声明一下。
+
+命名空间using namesapce std;
+
+多用enum,const替代define
+enum class XX{A，B}
+传统枚举enum XX{}导致重定义问题，暴露内部数据至全局命名空间（虽然可以用不同namespace包装重命名的enum类，但是很麻烦）
