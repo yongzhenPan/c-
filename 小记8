@@ -1,1 +1,4 @@
 c++模板类的声明和实现你不可以分开，都写在头文件里面，不然会编译出错！！！
+vector pop_back()返回值为void
+vector resize保障一定有N个空位，特别是使用copy泛函数时候，一定要保证有N个位置可以copy，这时候就可以使用resize，否则可能out of range
+vector的erase如果不指定范围，只给一个iterator位置，则只是删除这一个数，而并非是从这个位置到结尾的数
