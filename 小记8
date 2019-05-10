@@ -1,4 +1,10 @@
 c++模板类的声明和实现你不可以分开，都写在头文件里面，不然会编译出错！！！
+原因：
+1>test.obj : error LNK2019: 无法解析的外部符号 "public: void __thiscall P<int>::ppp(void)" (?ppp@?$P@H@@QAEXXZ)，该符号在函数 _main 中被引用
+模板类成员函数的实现放在tt.cpp里面，tt.cpp在生成自己的tt.obj过程中，由于tt.cpp内部并不知道要生成什么模板参数类型的函数，并且tt.cpp里面没有实例化模板的代码，就不生成相关的具体函数代码，这就导致链接时找不到相关的函数代码，无法执行。
+所以把实现放到头文件中，这样随着头文件插到main.cpp里面去，在生成main.obj时候，由于main.cpp里面有实例化模板类的代码，就会生成对应的函数。
+
+
 vector pop_back()返回值为void
 vector resize保障一定有N个空位，特别是使用copy泛函数时候，一定要保证有N个位置可以copy，这时候就可以使用resize，否则可能out of range
 vector的erase如果不指定范围，只给一个iterator位置，则只是删除这一个数，而并非是从这个位置到结尾的数
